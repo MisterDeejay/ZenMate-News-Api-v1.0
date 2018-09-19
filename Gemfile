@@ -1,8 +1,13 @@
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
 source 'https://rubygems.org'
 # git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.3.7'
 
+gem "pundit", '~>2.0.0'
 gem 'json_converter', '~> 0.0.0'
 gem 'aasm', '~> 5.0', '>= 5.0.1'
 gem 'active_model_serializers', '~> 0.10.0'
