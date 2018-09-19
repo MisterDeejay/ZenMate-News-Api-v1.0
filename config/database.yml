@@ -1,0 +1,27 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  port: 5432
+
+development:
+  <<: *defaults
+  database: goatee_development
+  username: <%= ENV['APP_USER_POSTGRES_USER'] %>
+  password: <%= ENV['APP_USER_POSTGRES_PASSWORD'] %>
+  host: localhost
+
+test:
+  <<: *defaults
+  database: goatee_test
+  username: <%= ENV['APP_USER_POSTGRES_USER'] %>
+  password: <%= ENV['APP_USER_POSTGRES_PASSWORD'] %>
+  host: localhost
+
+#chef writes it's own production block
+production:
+  <<: *defaults
+  host: <%= ENV['POSTGRES_HOST'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASS'] %>
+  database: <%= ENV['POSTGRES_DB'] %>
